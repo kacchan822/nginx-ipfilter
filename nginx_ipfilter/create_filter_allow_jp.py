@@ -85,10 +85,18 @@ def get_apple_data():
     return iplist
 
 
-with open(OUTPUT_FILE, 'w') as f:
-    f.write(f'# created at {datetime.now(timezone.utc).isoformat()}.\n')
-    f.write('# from APNIC registered addresses\n')
-    f.writelines(get_apnic_data())
-    f.write('# from Apple private relay egress ip ranges\n')
-    f.writelines(get_apple_data())
-    f.write(f'# EOF\n')
+def main():
+    apnic_data = get_apnic_data()
+    apple_data = get_apple_data()
+
+    with open(OUTPUT_FILE, 'w') as f:
+        f.write(f'# created at {datetime.now(timezone.utc).isoformat()}.\n')
+        f.write('# from APNIC registered addresses\n')
+        f.writelines(apnic_data)
+        f.write('# from Apple private relay egress ip ranges\n')
+        f.writelines(apple_data)
+        f.write(f'# EOF\n')
+
+
+if __name__ == '__main__':
+    main()
