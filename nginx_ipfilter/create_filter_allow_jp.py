@@ -15,7 +15,11 @@ DEFAULT_HEADERS = {
 
 
 def get_apnic_data():
-    url = 'http://www.apnic.net/stats/apnic/delegated-apnic-extended-latest'
+    """
+        APNIC Extended Allocation and Assignment Reports (Version 2.3) 
+        ref: https://www.apnic.net/about-apnic/corporate-documents/documents/resource-guidelines/rir-statistics-exchange-format/
+    """
+    url = 'http://ftp.apnic.net/stats/apnic/delegated-apnic-extended-latest'
     
     req = urllib.request.Request(url, headers=DEFAULT_HEADERS)
     try:
